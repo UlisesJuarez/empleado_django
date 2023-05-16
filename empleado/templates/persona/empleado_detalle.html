@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{empleado.full_name}}
+{% endblock title %}
+
+
+{% block content %}
+{% include 'includes/header.html' %}
+<br>
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell large-4 card" style="width: 300px;">
+            <div class="card-divider">
+                <!-- cuando el atributo es de tipo choices -->
+              <h4>{{empleado.get_job_display}}</h4>
+            </div>
+            
+            {% if empleado.avatar %}
+            <img src="{{empleado.avatar.url}}">
+            {% else %}
+                <img src="{% static 'img/default.jpeg' %}" alt="">
+            {% endif %}
+
+            <div class="card-section">
+              <h4>{{empleado.first_name}} {{empleado.last_name}}</h4>
+                <p>
+                    Departamento: {{ empleado.departamento.short_name}}<br>
+                    Hoja de vida: {{empleado.hoja_vida}}<br>
+                    <span class="label">Habilidades: </span>
+                    <ul class="vertical menu">
+                        
+                        {% for h in empleado.habilidades.all %}
+                            <li>{{h.habilidad}}</li>
+                        {% endfor %}
+                            
+                    </ul>
+
+                </p>
+                
+            </div>
+          </div>
+    </div>
+</div>
+
+    <!-- tambien podemos acceder utilizando el nombre del modelo en minuscula  'empleado'-->
+    <!-- {{object}} -->
+
+{% endblock content %}
+    
+

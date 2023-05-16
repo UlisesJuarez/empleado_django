@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block titulo %}
+    empleados por area
+{% endblock titulo %}
+
+
+{% block content %}
+{% include 'includes/header.html' %}
+<div class="grid-container">
+<div class="grid-x">
+    <div class="cell">
+        <h2>Empleados por área</h2>
+    </div>
+    <div class="cell">
+        <table>
+            <thead>
+              <tr>
+                <th width="200">ID</th>
+                <th>Nombres</th>
+                <th width="150">Apellidos</th>
+                <th width="150">Departamento</th>
+                <th width="150">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for e in empleados %}
+                <tr>
+                    <td>{{e.id}}</td>
+                    <td>{{e.first_name}}</td>
+                    <td>{{e.last_name}}</td>
+                    <td>{{e.departamento}}</td>
+                    <td><a class="button primary" href="{% url 'persona_app:empleado_detalle' e.id %}">Ver</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+</div>
+
+{% endblock content %}
+    
+

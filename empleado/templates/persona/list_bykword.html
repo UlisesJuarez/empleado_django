@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Lista de empleados</h1>
+    <h3>Ingresa el criterio de busqueda</h3>
+
+    <form method="get">{% csrf_token %}
+        <input type="text" id="criterio" name="palabra" placeholder="Ingrese el nombre aqui">
+        <input type="submit" value="Buscar">
+    </form>
+
+    <ul>
+        {% for empleado in empleados%}
+        <li>{{empleado}}</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
